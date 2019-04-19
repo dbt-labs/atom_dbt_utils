@@ -1,0 +1,64 @@
+'.source.sql':
+  'Date Add':
+    'prefix': 'dbt_utils-dateadd'
+    'body': "{{ dbt_utils.dateadd(datepart='${1:day}', interval=${2:1}, from_date_or_timestamp=${3:date}) }}"
+  'Date Diff':
+    'prefix': 'dbt_utils-datediff'
+    'body': "{{ dbt_utils.datediff(\"${1:date_begin}\", \"${2:date_end}\", '${3:day}') }}"
+  'Split Part':
+    'prefix': 'dbt_utils-split_part'
+    'body': "{{ dbt_utils.split_part(string_text=${1:string}, delimiter_text=${2:','}, part_number=${3:1}) }}"
+  'Date Trunc':
+    'prefix': 'dbt_utils-date_trunc'
+    'body': "{{ dbt_utils.date_trunc(${1:datepart}, ${2:date}) }}"
+  'Last Day':
+    'prefix': 'dbt_utils-last_day'
+    'body': "{{ dbt_utils.last_day(${1:date}, ${2:datepart}) }}"
+  'Date Spine':
+    'prefix': 'dbt_utils-date_spine'
+    'body': "{{ dbt_utils.date_spine(\n\tdatepart=\"${1:day}\",\n\tstart_date=\"to_date('${2:01/01/2016}', 'mm/dd/yyyy')\",\n\tend_date=\"${3:dateadd(week, 1, current_date)}\"\n\t)\n}}"
+  'Haversine Distance':
+    'prefix': 'dbt_utils-haversine_distance'
+    'body': "{{ dbt_utils.haversine_distance(lat1=${1:<float>},lon1=${2:<float>},lat2=${3:<float>},lon2=${4:<float>}) }}"
+  'Get Column Values':
+    'prefix': 'dbt_utils-get_column_values'
+    'body': "{{ dbt_utils.get_column_values(table=ref('${1:table_name}'), column='${2:column_name}', max_records=${3:50}) }}"
+  'Get Tables By Prefix':
+    'prefix': 'dbt_utils-get_tables_by_prefix'
+    'body': "{{ dbt_utils.get_tables_by_prefix('${1:schema}', '${2:prefix}') }}"
+  'Get Tables By Prefix (Exclude Underscores)':
+    'prefix': 'dbt_utils-get_tables_by_prefix (exclude underscores)'
+    'body': "{{ dbt_utils.get_tables_by_prefix('${1:schema}', '${2:prefix}','%_%') }}"
+  'Group By':
+    'prefix': 'dbt_utils-group_by'
+    'body': "{{ dbt_utils.group_by(n=${1:3}) }}"
+  'Star':
+    'prefix': 'dbt_utils-star'
+    'body': "{{ dbt_utils.star(from=ref('${1:table_name}'), except=[\"${2:excluded_field}\"]) }}"
+  'Union Tables':
+    'prefix': 'dbt_utils-union_tables'
+    'body': "{{ dbt_utils.union_tables(\n\ttables=[ref('${1:table_1}'), ref('${2:table_2}')],\n\tcolumn_override={\"${3:override_field}\": \"${4:data_type}\"},\n\texclude=[\"${5:exclude_field}\"],\n\tsource_column_name='${6:custom_source_column_name}'\n) }}"
+  'Generate Series':
+    'prefix': 'dbt_utils-generate_series'
+    'body': "{{ dbt_utils.generate_series(upper_bound=${1:1000}) }}"
+  'Surrogate Key':
+    'prefix': 'dbt_utils-surrogate_key'
+    'body': "{{  dbt_utils.surrogate_key('${1:column_a}','${2:column_b}') }}"
+  'Pivot':
+    'prefix': 'dbt_utils-pivot'
+    'body': "{{  dbt_utils.pivot(${1:column_name}, dbt_utils.get_column_values(table=ref('${2:table_name}'), column='${3:column_name}')) }}"
+  'Unpivot':
+    'prefix': 'dbt_utils-unpivot'
+    'body': "{{ dbt_utils.unpivot(table=ref('${1:table_name}'), cast_to='${2:datatype}', exclude=[${3:columns_to_exclude}]) }}"
+  'Get Url Parameter':
+    'prefix': 'dbt_utils-get_url_parameter'
+    'body': "{{ dbt_utils.get_url_parameter(field='${1:page_url}', url_parameter='${2:utm_source}') }}"
+  'Get Url Host':
+    'prefix': 'dbt_utils-get_url_host'
+    'body': "{{ dbt_utils.get_url_host(field='${1:page_url}') }}"
+  'Get Url Path':
+    'prefix': 'dbt_utils-get_url_path'
+    'body': "{{ dbt_utils.get_url_path(field='${1:page_url}') }}"
+  'Looker Dimension':
+    'prefix': 'looker_dimension'
+    'body': "dimension ${1:dim_name} {\n  type: ${2:type}\n  sql: \${TABLE}.${3:field_name}\n  group_label: \"${4:group_label}\"\n}"

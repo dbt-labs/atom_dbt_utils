@@ -1,0 +1,22 @@
+'.source.yaml':
+  'Equal Row Count':
+    'prefix': 'dbt_utils-equal_rowcount'
+    'body': '- dbt_utils.equal_rowcount:\n\tcompare_model: ref(\'${1:other_table_name}\')'
+  'Equality':
+    'prefix': 'dbt_utils-equality'
+    'body': '- dbt_utils.equality:\n\tcompare_model: ref(\'${1:other_table_name}\')'
+  'Expression Is True':
+    'prefix': 'dbt_utils-expression_is_true'
+    'body': '- dbt_utils.expression_is_true:\n\tcompare_model: \'${1:expression}\')'
+  'Recency':
+    'prefix': 'dbt_utils-recency'
+    'body': '- dbt_utils.recency:\n\tdatepart: ${1:day}\n\tfield: ${2:created_at}\n\tinterval: ${3:1}'
+  'At Least One':
+    'prefix': 'dbt_utils-at_least_one'
+    'body': '- dbt_utils.at_least_one'
+  'Not Constant':
+    'prefix': 'dbt_utils-not_constant'
+    'body': '- dbt_utils.not_constant'
+  'Cardinality Equality':
+    'prefix': 'dbt_utils-cardinality_equality'
+    'body': '- dbt_utils.cardinality_equality:\n\tfield: ${1:other_column_name}\n\tto: ref(\'${2:other_table_name}\')'
