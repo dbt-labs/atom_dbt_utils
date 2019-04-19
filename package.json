@@ -1,6 +1,6 @@
 {
   "name": "atom-dbt-utils",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Snippets for dbt utils",
   "repository": "https://github.com/ChrisLawliss/atom_dbt_utils",
   "license": "MIT",
