@@ -1,8 +1,8 @@
 {
   "name": "atom-dbt-utils",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "Snippets for dbt utils",
-  "repository": "https://github.com/ChrisLawliss/atom_dbt_utils",
+  "repository": "https://github.com/fishtown-analytics/atom_dbt_utils",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
